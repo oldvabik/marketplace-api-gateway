@@ -33,5 +33,5 @@ public class RegisterForm {
     private String password;
 
     @NotNull
-    private Role role;
+    private Role role = Role.USER;
 }
