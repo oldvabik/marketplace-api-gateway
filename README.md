@@ -13,7 +13,9 @@ marketplace/
 │   └── src/
 ├── AuthService/
 ├── UserService/
+├── PaymentService/
 └── OrderService/
+
 ```
 
 **IMPORTANT:** All 4 services must be in the same parent folder, on the same level
@@ -22,28 +24,35 @@ marketplace/
 
 - **AuthService** → https://github.com/oldvabik/marketplace-auth-service
 - **UserService** → https://github.com/oldvabik/marketplace-user-service
+- **PaymentService** → https://github.com/oldvabik/marketplace-payment-service
 - **OrderService** → https://github.com/oldvabik/marketplace-order-service
 
 ## How to run everything
 
-1. **Clone/download all 4 services** into one folder so the structure above is matched
+1. **Clone/download all 5 services** into one folder so the structure above is matched
 2. **Go to the `ApiGateway` folder and create a `.env` file:**
 ```
-SPRING_PROFILES_ACTIVE=docker
+DB_USER=user
+DB_PASSWORD=password
 
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
-POSTGRES_DB_AUTH=auth_db
-POSTGRES_DB_USER=user_db
-POSTGRES_DB_ORDER=order_db
-POSTGRES_URL_AUTH=jdbc:postgresql://postgres-auth:5432/auth_db
-POSTGRES_URL_USER=jdbc:postgresql://postgres-user:5432/user_db
-POSTGRES_URL_ORDER=jdbc:postgresql://postgres-order:5432/order_db
+AUTH_DB_NAME=your_auth_db
+USER_DB_NAME=your_user_db
+ORDER_DB_NAME=your_order_db
+PAYMENT_DB_NAME=your_payment_db
+
+AUTH_DB_URL=jdbc:postgresql://postgres-auth:5432/your_auth_db
+USER_DB_URL=jdbc:postgresql://postgres-user:5432/your_user_db
+ORDER_DB_URL=jdbc:postgresql://postgres-order:5432/your_order_db
+PAYMENT_DB_URL=mongodb://mongodb-payment:27017/your_payment_db
 
 REDIS_HOST=redis
 REDIS_PORT=6379
 
-JWT_SECRET=caa92feefa6438c8c96d1b75f1bc388c7df2cc5e5425a2b91077d3aa5c5c2e4416acf9bfe7b9a122b07d3b071cd626c6f81a68b406078a787a3a524db986dea1
+KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+
+RANDOM_API_URL=https://random.org/integers?num=1&min=1&max=100&col=1&base=10&format=plain
+
+JWT_SECRET=jwt_secret
 ```
 3. Run from the ApiGateway folder
 ```
